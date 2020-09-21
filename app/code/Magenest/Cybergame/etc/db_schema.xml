@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="gamer_account_list" resource="default" engine="innodb" comment="Gamer Account List">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product Id"/>
+        <column xsi:type="varchar" name="account_name" length="255"  nullable="false"
+                 comment="Account Name"/>
+        <column xsi:type="varchar" name="password" length="255"  nullable="false"
+                 comment="Password"/>
+        <column xsi:type="int" name="hour" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Hour"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="GAMER_ACCOUNT_LIST_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+        <index referenceId="GAMER_ACCOUNT_LIST_ACCOUNT_NAME" indexType="btree">
+            <column name="account_name"/>
+        </index>
+    </table>
+    <table name="room_extra_option" resource="default" engine="innodb" comment="Room Extra Option">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product Id"/>
+        <column xsi:type="int" name="number_pc" padding="10" unsigned="true" nullable="false"
+                identity="false" comment="Number Pc"/>
+        <column xsi:type="varchar" name="room_name" length="255"  nullable="false"
+                 comment="Room Name"/>
+        <column xsi:type="varchar" name="address" length="255"  nullable="false"
+                 comment="Address"/>
+        <column xsi:type="int" name="food_price" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Food Price"/>
+        <column xsi:type="int" name="drink_price" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Drink Price"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="ROOM_EXTRA_OPTION_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+</schema>
+

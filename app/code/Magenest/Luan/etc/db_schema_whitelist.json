@@ -1,0 +1,20 @@
+{
+    "hotel_entity": {
+        "column": {
+            "hotel_id": true,
+            "hotel_name": true,
+            "location_street": true,
+            "location_city": true,
+            "location_state": true,
+            "location_country": true,
+            "contact_phone": true,
+            "total_available_room": true,
+            "available_single": true,
+            "available_double": true,
+            "available_triple": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

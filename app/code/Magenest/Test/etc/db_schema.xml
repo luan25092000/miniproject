@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="magenest_test_address" resource="default" engine="innodb" comment="Magenest Test Address">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="varchar" name="city" length="255"  nullable="false" comment="City"/>
+        <column xsi:type="varchar" name="country" length="255"  nullable="false" comment="Country"/>
+        <column xsi:type="varchar" name="region" length="255"  nullable="false" comment="Region"/>
+        <column xsi:type="varchar" name="contact_name" length="255" nullable="false" comment="Post code"/>
+        <column xsi:type="int" name="telephone" padding="10" unsigned="true" nullable="false" identity="false" comment="Fax"/>
+        <column xsi:type="varchar" name="fax" length="255" nullable="false" comment="Fax"/>
+        <column xsi:type="varchar" name="firstname" length="255"  nullable="false" comment="Firstname"/>
+        <column xsi:type="varchar" name="lastname" length="255"  nullable="false" comment="Lastname"/>
+        <column xsi:type="varchar" name="email" length="255"  nullable="false" comment="Email"/>
+        <column xsi:type="varchar" name="prefix" length="255"  nullable="false" comment="Prefix"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
+

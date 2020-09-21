@@ -1,0 +1,15 @@
+{
+    "magenest_staff": {
+        "column": {
+            "id": true,
+            "customer_id": true,
+            "nick_name": true,
+            "type": true,
+            "status": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

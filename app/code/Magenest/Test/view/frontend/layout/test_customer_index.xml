@@ -1,0 +1,18 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <css src="Magenest_Test::css/test.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My Test Address</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magenest\Test\Block\Address" name="my_test_address" template="Magenest_Test::address.phtml">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

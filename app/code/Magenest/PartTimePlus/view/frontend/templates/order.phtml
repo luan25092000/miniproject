@@ -1,0 +1,41 @@
+<form id="form">
+    <label>Order Id</label>
+    <select id="select_order_id">
+        <?php foreach($block->showOrderId() as $id): ?>
+            <option value="<?= $id ?>"><?= $id ?></option>
+        <?php endforeach;?>
+    </select>
+    <label>Questions</label>
+    <select id="select_question">
+    </select>
+</form>
+<script>
+    require(['jquery'], function ($, modal) {
+        $(document).ready(function () {
+            $('#select_order_id').change(function () {
+                let selectOptions = $("#select_order_id option:selected").val();
+                let url = "http://nhlmg.com/plus/index/retrieve";
+                let html = "";
+                jQuery.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {option: selectOptions},
+                    showLoader: true,
+                    cache: false,
+                    success: function (response) {
+                        var questions = JSON.parse(response);
+                        for(let $i=0; $i<questions.length;$i++){
+                            if(questions[$i]!==''){
+                                html+="<option>"+questions[$i]+"</options>";
+                            }
+                        }
+                        document.getElementById("select_question").innerHTML=html;
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>

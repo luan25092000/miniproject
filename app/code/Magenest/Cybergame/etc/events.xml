@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="customer_register_success_change_is_manager" instance="Magenest\Cybergame\Observer\EnableToChange"/>
+    </event>
+    <event name="customer_account_edited">
+        <observer name="customer_edit_success_change_is_manager" instance="Magenest\Cybergame\Observer\EnableToEdit"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="checkout_success" instance="Magenest\Cybergame\Observer\HandleAccount"/>
+    </event>
+</config>

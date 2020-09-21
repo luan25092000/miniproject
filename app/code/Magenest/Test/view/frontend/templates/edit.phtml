@@ -1,0 +1,29 @@
+<?php
+$data = $block->edit();
+?>
+<h1>Edit address id:<?= $data['id'];?></h1>
+<form action="<?= $block->getBaseUrl(); ?>test/customer/update/" method="POST">
+    <input type="hidden" value="<?= $data['id']; ?>" name ="address_id" />
+    <label>Prefix</label>
+    <input type="text" name="prefix" value="<?= $data['prefix']; ?>"  readonly />
+    <label>Email</label>
+    <input type="text" name="email" value="<?= $data['email']; ?>"  required />
+    <label>Firstname</label>
+    <input type="text" name="firstname" value="<?= $data['firstname']; ?>" required/>
+    <label>Lastname</label>
+    <input type="text" name="lastname" value="<?= $data['lastname']; ?>" required/>
+    <label>Fax</label>
+    <input type="text" name="fax" value="<?= $data['fax']; ?>" required/>
+    <label>Telephone</label>
+    <input type="text" name="telephone" value="<?= $data['telephone']; ?>" required/>
+    <label>Postcode</label>
+    <input type="text" name="contact_name" value="<?= $data['contact_name']; ?>" required/>
+    <label>Country</label>
+    <input type="text" name="country" value="<?= $data['country']; ?>" required/>
+    <label>Region</label>
+    <input type="text" name="region" value="<?= $data['region']; ?>" required/>
+    <label>City</label>
+    <input type="text" name="city" value="<?= $data['city']; ?>" required/>
+    <input type="submit" value="change" name="submit"/>
+</form>
+

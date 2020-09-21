@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_type_prepare_full_options">
+        <observer name="set_additional_options" instance="Magenest\Luan\Observer\SetAdditionalOptions"/>
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="after_order_handle_quantity" instance="Magenest\Luan\Observer\HandleQuantity"/>
+    </event>
+</config>

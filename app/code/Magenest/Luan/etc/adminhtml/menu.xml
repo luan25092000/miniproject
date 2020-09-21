@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=
+    "urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="Magenest_Luan::luan"
+            title="Magenest"
+            module="Magenest_Luan"
+            resource="Magenest_Luan::Luan"
+            sortOrder="60"
+        />
+        <add
+            id="Magenest_Luan::hotel"
+            title="Manage Hotel"
+            module="Magenest_Luan"
+            resource="Magenest_Luan::hotel"
+            parent="Magenest_Luan::luan"
+            action="luan/index/display"
+        />
+        <add
+            id="Magenest_Luan::manage"
+            title="Booking Management"
+            module="Magenest_Luan"
+            resource="Magenest_Luan::manage"
+            sortOrder="61"
+        />
+        <add
+            id="Magenest_Luan::order"
+            title="Filter Order"
+            module="Magenest_Luan"
+            resource="Magenest_Luan::order"
+            parent="Magenest_Luan::manage"
+            action="luan/order/show"
+        />
+    </menu>
+</config>

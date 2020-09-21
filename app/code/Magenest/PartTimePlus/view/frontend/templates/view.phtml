@@ -1,0 +1,93 @@
+<style>
+    table, tr, td {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+</style>
+<button id="view" style="margin:1rem 0;">View customers have same custom prefix</button>
+<table id="modal">
+</table>
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+        let options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'View customers have same custom prefix',
+            buttons: [{
+                text: $.mage.__('Close'),
+                class: 'primary action submit btn btn-default',
+                click: function () {
+                    this.closeModal();
+                }
+            }, {
+                text: $.mage.__('Show'),
+                class: 'show btn btn-default',
+                click: function () {
+                    var url = "http://nhlmg.com/plus/index/replace";
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        showLoader: true,
+                        cache: false,
+                        success: function (response) {
+                            var html = '';
+                            var data = JSON.parse(response);
+                            html += " <tr>" +
+                                "        <th>ID</th>" +
+                                "        <th>Custom Prefix</th>" +
+                                "        <th>Name</th>" +
+                                "        <th>Email</th>" +
+                                "    </tr>";
+                            for (let i of data) {
+                                html += "<tr>";
+                                for (let j of i) {
+                                    html += "<td>" + j + "</td>";
+                                }
+                                html += "</tr>";
+                            }
+                            var popup = modal(options, $('#modal'));
+                            $('#modal').html(html).modal("openModal");
+                            $(".show").hide();
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            }]
+        };
+        $('#view').click(function (e) {
+            e.preventDefault();
+            var url = "http://nhlmg.com/plus/index/view";
+            $.ajax({
+                url: url,
+                type: "POST",
+                showLoader: true,
+                cache: false,
+                success: function (response) {
+                    var html = '';
+                    var data = JSON.parse(response);
+                    html += " <tr>" +
+                        "        <th>ID</th>" +
+                        "        <th>Custom Prefix</th>" +
+                        "        <th>Name</th>" +
+                        "        <th>Email</th>" +
+                        "    </tr>";
+                    for (let i of data) {
+                        html += "<tr>";
+                        for (let j of i) {
+                            html += "<td>" + j + "</td>";
+                        }
+                        html += "</tr>";
+                    }
+                    var popup = modal(options, $('#modal'));
+                    $('#modal').html(html).modal("openModal");
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+</script>

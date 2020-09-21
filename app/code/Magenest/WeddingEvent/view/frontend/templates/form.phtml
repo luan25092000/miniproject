@@ -1,0 +1,91 @@
+<form method="POST" id="form" action="http://nhlmg.com/wedding/index/display">
+    <label>Bride's email:</label>
+    <input type="email" name="bride_email_input" id="bride"/>
+    <label>Groom's email:</label>
+    <input type="email" name="groom_email_input" id="groom"/>
+    <input type="submit" name="submit" value="Submit" id="submit"/>
+</form>
+<div id="modal"></div>
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+        let options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'Wedding Events',
+            buttons: [{
+                text: $.mage.__('Close'),
+                class: 'primary action submit btn btn-default',
+                click: function () {
+                    this.closeModal();
+                }
+            }]
+        };
+        $('#form').submit(function (e) {
+            e.preventDefault();
+            var brideEmail = $("#bride").val();
+            var groomEmail = $("#groom").val();
+            var url = "http://nhlmg.com/wedding/index/get";
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {bride: brideEmail, groom: groomEmail},
+                showLoader: true,
+                cache: false,
+                success: function (response) {
+                    let array = JSON.parse(response);
+                    for (object of array) {
+                        var bride_email = object.bride_email;
+                        var groom_email = object.groom_email;
+                    }
+                    if (brideEmail === bride_email && groomEmail === groom_email) {
+                        var popup = modal(options, $("#modal"));
+                        var html = "";
+                        html += "<p>Bride's name: " + object.bride_firstname + " " + object.bride_lastname + "</p>";
+                        html += "<p>Groom's name: " + object.groom_firstname + " " + object.groom_lastname + "</p>";
+                        html += "<form method='POST' action ='#' id='form-modal'>";
+                        html += "<p>Amount: <input type='number' name='amount' id='amount'/></p>";
+                        html += "<button type='submit' id='add_to_cart' name='add_to_cart'>Add to cart</button>";
+                        html += "</form>";
+                        $('#modal').html(html).modal("openModal");
+                    } else {
+                        let popup = modal(options, $("#modal"));
+                        let html = "";
+                        html += "<p>Wedding Events can't be found.</p>";
+                        $('#modal').html(html).modal("openModal");
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+        $('#modal').change("#amount", function (e) {
+            e.preventDefault();
+            var amount = jQuery('#amount').val();
+            if (amount < 0) {
+                document.getElementById("add_to_cart").disabled = true;
+            } else {
+                document.getElementById("add_to_cart").disabled = false;
+            }
+        }).click('#add_to_cart',function() {
+            var brideEmail = $("#bride").val();
+            var groomEmail = $("#groom").val();
+            var amount = $("#amount").val();
+            var url = "http://nhlmg.com/wedding/index/redirect";
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {bride: brideEmail, groom: groomEmail, amount: amount},
+                showLoader: false,
+                cache: false,
+                success: function (response) {
+                    $("#form-modal").attr("action",response);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+</script>

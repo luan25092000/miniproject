@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="hotel_entity" resource="default" engine="innodb" comment="Manufacturer Entity Table">
+        <column xsi:type="int" name="hotel_id" unsigned="true" nullable="false" identity="true"
+                comment="Hotel ID"/>
+        <column xsi:type="varchar" name="hotel_name" nullable="true" length="100" comment="Hotel Name"/>
+        <column xsi:type="text" name="location_street" nullable="true" comment="Location Street"/>
+        <column xsi:type="varchar" name="location_city" nullable="true" length="50" comment="Location City"/>
+        <column xsi:type="varchar" name="location_state" nullable="true" length="50" comment="Location State"/>
+        <column xsi:type="varchar" name="location_country" nullable="true" length="10" comment="Location Country"/>
+        <column xsi:type="varchar" name="contact_phone" nullable="true" length="20" comment="Contact Phone"/>
+        <column xsi:type="tinyint" name="total_available_room" nullable="true" comment="Total Available Room"/>
+        <column xsi:type="tinyint" name="available_single" nullable="true" padding="100" comment="Available Single"/>
+        <column xsi:type="tinyint" name="available_double" nullable="true" padding="100" comment="Available Double"/>
+        <column xsi:type="tinyint" name="available_triple" nullable="true" padding="100" comment="Available Triple"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="hotel_id"/>
+        </constraint>
+    </table>
+</schema>

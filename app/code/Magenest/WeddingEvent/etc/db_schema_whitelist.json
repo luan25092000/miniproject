@@ -1,0 +1,21 @@
+{
+    "magenest_wedding_event": {
+        "column": {
+            "id": true,
+            "title": true,
+            "commission": true,
+            "bride_firstname": true,
+            "bride_lastname": true,
+            "bride_email": true,
+            "sent_to_bride": true,
+            "groom_firstname": true,
+            "groom_lastname": true,
+            "groom_email": true,
+            "sent_to_groom": true,
+            "message": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

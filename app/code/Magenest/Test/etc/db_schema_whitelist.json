@@ -1,0 +1,20 @@
+{
+    "magenest_test_address": {
+        "column": {
+            "id": true,
+            "city": true,
+            "country": true,
+            "region": true,
+            "contact_name": true,
+            "telephone": true,
+            "fax": true,
+            "firstname": true,
+            "lastname": true,
+            "email": true,
+            "prefix": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

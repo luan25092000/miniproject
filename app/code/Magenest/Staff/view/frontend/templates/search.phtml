@@ -1,0 +1,38 @@
+<div>Search Staff</div>
+<form method="POST" id="full-text-search">
+    <input type="text" placeholder="Enter the nickname" name="search" id="name"/>
+    <br />
+    <input type="submit" value="Search" />
+</form>
+<br />
+<div id="result"></div>
+<script>
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            $('#full-text-search').submit(function (e) {
+                e.preventDefault();
+                var name = $("#name").val();
+                var html = "";
+                console.log(name);
+                var url = "http://nhlmg.com/staff/index/retrieve";
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {name: name},
+                    showLoader: true,
+                    cache: false,
+                    success: function (response) {
+                        let $data = JSON.parse(response);
+                        for(let i = 0;i<$data.length;i++){
+                            html += $data[i]+" ";
+                            document.getElementById("result").innerHTML = html;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>

@@ -1,0 +1,43 @@
+<h2>Update your profile</h2>
+<form method="POST" id="form">
+    <lable>Staff Type</lable>
+    <select name="selected_level" class="selected_level">
+        <option value='1'>lv1</option>
+        <option value='2'>lv2</option>
+        <option value='0'>not staff</option>
+    </select>
+    <lable>Nick Name</lable>
+    <input type="text" name="nickname" value="<?= $block->getNickName(); ?>" id="nickname"/>
+    <p><input type="submit" value="Save" name="save"/></p>
+</form>
+<script>
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                let selectedLevel = $("select.selected_level").children("option:selected").val();
+                let nickName = $("#nickname").val();
+                let url = "http://nhlmg.com/staff/index/save";
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {level: selectedLevel, nickName: nickName},
+                    showLoader: true,
+                    cache: false,
+                    success: function (response) {
+                        let $data = JSON.parse(response);
+                        if(nickName !== $data[0]){
+                            alert("Successful to update");
+                        }
+                        else{
+                            alert("Failed to update");
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+<strong><label>Please choose the location of hotel</label></strong>
+<br/>
+<select name="hotel_select" id="select_hotel">
+    <?php foreach ($block->getHotel() as $item): ?>
+        <option value=<?= $item['hotel_id']; ?>><?= $item['location_city']; ?></option>
+    <?php endforeach; ?>
+</select>
+<div id="modal"></div>
+<script>
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+        let options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'Hotel Details',
+            buttons: [{
+                text: $.mage.__('Close'),
+                class: 'primary action submit btn btn-default',
+                click: function () {
+                    this.closeModal();
+                }
+            }]
+        };
+        jQuery(document).ready(function () {
+            jQuery('#select_hotel').change(function () {
+                let selectOptions = jQuery("#select_hotel option:selected").val();
+                let url = "http://nhlmg.com/luan/index/retrieve";
+                jQuery.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {option: selectOptions},
+                    showLoader: true,
+                    cache: false,
+                    success: function (response) {
+                        let array = JSON.parse(response);
+                        for (object of array) {
+                            var hotelName = object.hotel_name;
+                            var locationStreet = object.location_street;
+                            var locationCity = object.location_city;
+                            var locationState = object.location_state;
+                            var locationCountry = object.location_country;
+                            var contactPhone = object.contact_phone;
+                            var quantityRoom = parseInt(object.available_single) + parseInt(object.available_double) + parseInt(object.available_triple);
+                        }
+                        let popup = modal(options, $("#modal"));
+                        let html = "";
+                        html += "<p>Hotel Name: " + hotelName + "</p>";
+                        html += "<p>Location Street: " + locationStreet + "</p>";
+                        html += "<p>Location City: " + locationCity + "</p>";
+                        html += "<p>Location State: " + locationState + "</p>";
+                        html += "<p>Location Country: " + locationCountry + "</p>";
+                        html += "<p>Contact Phone: " + contactPhone + "</p>";
+                        html += "<p>Quantity Room: " + quantityRoom + "</p>";
+                        $('#modal').html(html).modal("openModal");
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+                return false;
+            });
+        });
+    });
+</script>

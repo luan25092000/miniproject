@@ -1,0 +1,60 @@
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Short Description</th>
+        <th>Action</th>
+    </tr>
+    <?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $notification = $objectManager->create('Magenest\Notification\Model\Notification');
+    foreach ($block->showNotification()
+             as $item):
+        $notification->load($item);
+        if ($notification->getData('status') === 'enable'):
+            ?>
+            <tr style="background-color:antiquewhite;">
+                <td><?= $notification->getData('created_at') ?></td>
+                <td><?= $notification->getData('short_description') ?></td>
+                <td>
+                    <a href="<?= $notification->getData('redirect_url'); ?>" id="view" target="_blank">View Detail</a>&ensp;
+                    <a class="check" id="check<?= $notification->getData('entity_id') ?>"
+                       data-check="<?= $notification->getData('entity_id') ?>">Mark as read</a>&ensp;
+                    <a class="delete" id="delete<?= $notification->getData('entity_id') ?>"
+                       data-delete="<?= $notification->getData('entity_id') ?>">Delete</a>
+                </td>
+            </tr>
+        <?php
+        elseif ($notification->getData('status') !== 'enable'):
+            ?>
+            <tr>
+                <td><?= $notification->getData('created_at') ?></td>
+                <td><?= $notification->getData('short_description') ?></td>
+                <td>
+                    <a href="#" id="view" target="_blank">View Detail</a>&ensp;
+                    <a class="delete" id="delete<?= $notification->getData('entity_id') ?>"
+                       data-delete="<?= $notification->getData('entity_id') ?>">Delete</a>
+                </td>
+            </tr>
+        <?php
+        endif;
+    endforeach;
+    ?>
+</table>
+<script>
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            $(".check").click(function () {
+                const url = "http://nhlmg.com/notification/index/retrieve";
+                let id = $(this).attr("data-check");
+                location.replace(url + "/id/" + id);
+            });
+            $(".delete").click(function () {
+                const url = "http://nhlmg.com/notification/index/delete";
+                let id = $(this).attr("data-delete");
+                location.replace(url + "/id/" + id);
+            });
+            $('#view').css("display", "none");
+            $('#delete').css("display", "none");
+        });
+    });
+</script>

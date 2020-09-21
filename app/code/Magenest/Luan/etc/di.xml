@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magenest_luan_listing_data_source" xsi:type="string">
+                    Magenest\Luan\Model\ResourceModel\Hotel\Collection
+                </item>
+                <item name="magenest_luan_listing_data_source" xsi:type="string">
+                    Magenest\Luan\Model\ResourceModel\Filter\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magenest\Luan\Model\ResourceModel\Hotel\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">hotel_entity</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Luan\Model\ResourceModel\Notification</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magenest\Luan\Model\ResourceModel\Filter\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sales_order</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=
+    "urn:magento:framework:Event/etc/events.xsd">
+    <event name="after_create_wedding_event">
+        <observer name="change_wedding_id"
+                  instance="Magenest\WeddingEvent\Observer\ChangeWeddingId"/>
+    </event>
+    <event name="change_after_add_to_cart">
+        <observer name="change_subtotal" instance="Magenest\WeddingEvent\Observer\ChangeSubtotal"/>
+    </event>
+</config>

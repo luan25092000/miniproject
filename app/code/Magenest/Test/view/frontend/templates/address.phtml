@@ -1,0 +1,30 @@
+<table>
+    <tr>
+        <th>Prefix</th>
+        <th>Email</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Fax</th>
+        <th>Telephone</th>
+        <th>Postcode</th>
+        <th>Country</th>
+        <th>Region</th>
+        <th>City</th>
+        <th>Action</th>
+    </tr>
+    <?php foreach ($block->getAddress() as $item): ?>
+        <tr>
+            <td><?= $item['prefix']; ?></td>
+            <td><?= $item['email']; ?></td>
+            <td><?= $item['firstname']; ?></td>
+            <td><?= $item['lastname']; ?></td>
+            <td><?= $item['fax']; ?></td>
+            <td><?= $item['telephone']; ?></td>
+            <td><?= $item['contact_name']; ?></td>
+            <td><?= $item['country']; ?></td>
+            <td><?= $item['region']; ?></td>
+            <td><?= $item['city']; ?></td>
+            <td><a href="<?= $block->getBaseUrl();?>test/customer/edit/id/<?= $item['id']; ?>">Edit</a></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

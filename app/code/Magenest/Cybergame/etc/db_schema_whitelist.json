@@ -1,0 +1,39 @@
+{
+    "gamer_account_list": {
+        "column": {
+            "id": true,
+            "product_id": true,
+            "account_name": true,
+            "password": true,
+            "hour": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "GAMER_ACCOUNT_LIST_PRODUCT_ID": true,
+            "GAMER_ACCOUNT_LIST_ACCOUNT_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "room_extra_option": {
+        "column": {
+            "id": true,
+            "product_id": true,
+            "number_pc": true,
+            "room_name": true,
+            "address": true,
+            "food_price": true,
+            "drink_price": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "ROOM_EXTRA_OPTION_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

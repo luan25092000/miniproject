@@ -1,0 +1,35 @@
+<label>Account name</label>
+<input type="text" name="account_guest" id="account"/>
+
+<div style="color:red; display:none;" id="error">Account was exist in our system. You are buying hour for this
+    account.
+</div>
+<div style="color:blue; display:none;" id="success"> We will create new account for you. Default password = 1. You
+    should change the password after login
+</div>
+<script type="text/javascript">
+    require(['jquery'], function () {
+        jQuery('#account').change(function () {
+            var accountName = jQuery("#account").val();
+            var url = "http://nhlmg.com/cybergame/account/check";
+            jQuery.ajax({
+                url: url,
+                data: {name: accountName},
+                showLoader: true,
+                cache: false,
+                success: function (response) {
+                    if (parseInt(response) === 1) {
+                        document.getElementById('error').style.display = "block";
+                        document.getElementById('success').style.display = "none";
+                    } else {
+                        document.getElementById('success').style.display = "block";
+                        document.getElementById('error').style.display = "none";
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+</script>

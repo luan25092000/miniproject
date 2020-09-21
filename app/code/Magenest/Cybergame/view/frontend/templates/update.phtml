@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th>Product Id</th>
+        <th>Room Name</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    <?php foreach ($block->show() as $item): ?>
+        <tr>
+            <td><?= $item['product_id']; ?></td>
+            <td><?= $item['room_name']; ?></td>
+            <td><?= $item['food_price'] + $item['drink_price']; ?></td>
+            <?php if($block->disabled() === true):?>
+                <td><a href="http://nhlmg.com/cybergame/customer/edit/id/<?= $item['product_id']; ?>">Edit</a></td>
+            <?php elseif($block->disabled() === false):?>
+                <td><a href="http://nhlmg.com/cybergame/customer/edit/" disabled>Edit</a></td>
+            <?php endif; ?>
+        </tr>
+    <?php endforeach; ?>
+</table>

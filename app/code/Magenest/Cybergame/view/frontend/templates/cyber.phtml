@@ -1,0 +1,9 @@
+<?php $data = $block->showInfo(); ?>
+<?php if($data!==[]): ?>
+<p>Number pc: <?= $data['number_pc']; ?></p>
+<p>Address: <?= $data['address']; ?></p>
+<p>Number pc: <?= $data['food_price']; ?></p>
+<p>Address: <?= $data['drink_price']; ?></p>
+<?php elseif ($data===[]): ?>
+<?= ""?>
+<?php endif; ?>
